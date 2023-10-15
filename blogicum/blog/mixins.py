@@ -1,14 +1,16 @@
-from django.shortcuts import redirect, get_object_or_404
-from .models import Post
+from django.shortcuts import redirect, reverse
 
 
 class PostMixin:
-    model = Post
-    template_name = 'blog/create.html'
-    pk_url_kwarg = 'pk'
 
     def dispatch(self, request, *args, **kwargs):
-        instance = get_object_or_404(Post, pk=self.kwargs['pk'])
-        if instance.author != request.user:
-            return redirect('blog:post_detail', self.kwargs['pk'])
+        post = self.get_object()
+        if post.author != request.user:
+            return redirect('blog:post_detail', pk=post.pk)
         return super().dispatch(request, *args, **kwargs)
+
+
+class UrlCommentsMixin:
+
+    def get_success_url(self):
+        return reverse('blog:post_detail', kwargs={'pk': self.kwargs['pk']})

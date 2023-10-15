@@ -1,16 +1,18 @@
 from django.contrib import admin
 
-from .models import Category, Location, Post
+from .models import Category, Comment, Location, Post
 
 
 class BlogAdmin(admin.ModelAdmin):
-    """Панель администратора"""
+    """Панель администратора."""
+
     list_editable = ('is_published',)
 
 
 @admin.register(Category)
 class CategoryAdmin(BlogAdmin):
-    """Управление катерогиями со страницы админа"""
+    """Управление катерогиями со страницы админа."""
+
     list_display = (
         'title',
         'is_published',
@@ -21,7 +23,8 @@ class CategoryAdmin(BlogAdmin):
 
 @admin.register(Post)
 class PostAdmin(BlogAdmin):
-    """Управление постами со страницы админа"""
+    """Управление постами со страницы админа."""
+
     list_display = (
         'title',
         'is_published',
@@ -36,9 +39,22 @@ class PostAdmin(BlogAdmin):
 
 @admin.register(Location)
 class AdminLocation(BlogAdmin):
-    """Управление местоположением со страницы админа"""
+    """Управление местоположением со страницы админа."""
+
     list_display = (
         'created_at',
         'is_published',
         'name',
     )
+
+
+@admin.register(Comment)
+class AdminComment(BlogAdmin):
+    """Управление комментариями со страницы админа."""
+    list_display = (
+        'created_at',
+        'post',
+        'text',
+        'author',
+    )
+    list_editable = ['text']
