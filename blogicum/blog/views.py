@@ -101,7 +101,7 @@ class ProfileListView(ListView):
         else:
             queryset = user.posts.filter(
                 pub_date__lte=timezone.now()
-                ).order_by('-pub_date')
+            ).order_by('-pub_date')
         queryset = queryset.annotate(comment_count=Count('comments'))
         return queryset
 
