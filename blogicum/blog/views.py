@@ -154,8 +154,9 @@ class PostUpdateView(LoginRequiredMixin, PostMixin, UpdateView):
 
 class PostDeleteView(
     LoginRequiredMixin, PostMixin, DeleteView, GetProfileMixin
-     ):
+):
     '''Страница удаления поста.'''
+
     model = Post
     form_class = PostForm
     template_name = 'blog/create.html'
@@ -182,7 +183,7 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
 
 class CommentUpdateView(
     LoginRequiredMixin, UrlCommentsMixin, DispatchCommentMixin, UpdateView
-     ):
+):
     '''Страница обновления комментария.'''
 
     model = Comment
@@ -193,7 +194,7 @@ class CommentUpdateView(
 
 class CommentDeleteView(
     LoginRequiredMixin, UrlCommentsMixin, DispatchCommentMixin, DeleteView
-     ):
+):
     '''Страница удаления комментария.'''
 
     model = Comment
