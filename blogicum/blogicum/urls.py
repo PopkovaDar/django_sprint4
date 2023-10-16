@@ -8,7 +8,6 @@ from django.views.generic.edit import CreateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pages/', include('pages.urls')),
-    path('', include('blog.urls')),
     path(
         'auth/registration/',
         CreateView.as_view(

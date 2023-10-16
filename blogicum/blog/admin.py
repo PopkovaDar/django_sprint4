@@ -57,4 +57,4 @@ class AdminComment(BlogAdmin):
         'text',
         'author',
     )
-    list_editable = ['text']
+    list_editable = ('text',)
