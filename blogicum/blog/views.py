@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from django.http import Http404
-from django.shortcuts import get_object_or_404, redirect, reverse
+from django.shortcuts import get_object_or_404, reverse
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic import (
@@ -154,7 +154,7 @@ class PostUpdateView(LoginRequiredMixin, PostMixin, UpdateView):
 
 class PostDeleteView(
     LoginRequiredMixin, PostMixin, DeleteView, GetProfileMixin
-      ):
+     ):
     '''Страница удаления поста.'''
     model = Post
     form_class = PostForm
@@ -182,7 +182,7 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
 
 class CommentUpdateView(
     LoginRequiredMixin, UrlCommentsMixin, DispatchCommentMixin, UpdateView
-      ):
+     ):
     '''Страница обновления комментария.'''
 
     model = Comment
@@ -193,10 +193,9 @@ class CommentUpdateView(
 
 class CommentDeleteView(
     LoginRequiredMixin, UrlCommentsMixin, DispatchCommentMixin, DeleteView
-      ):
+     ):
     '''Страница удаления комментария.'''
 
     model = Comment
     template_name = 'blog/comment.html'
     pk_url_kwarg = 'id'
-
